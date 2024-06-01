@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cliente-list" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ clienteId ? 'Editar Cliente' : 'Nuevo Cliente' }}</ion-title>
+
+    <ion-buttons slot="primary" (click)="incluirOEditarCliente()">
+      <ion-button fill="solid"> Guardar 
+        <ion-icon slot="end" name="checkmark"></ion-icon>
+    </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="registroForm" class="form">
+    <ion-list>
+      <ion-item disabled="true">
+        <ion-label position="floating">Id #</ion-label>
+        <ion-input formControlName="id" type="text" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input formControlName="apellido" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha de nacimiento</ion-label>
+        <ion-datetime formControlName="fechaNacimiento" displayFormat="yyyy-MM-dd"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bien Asegurado</ion-label>
+        <ion-input formControlName="bienAsegurado" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Monto Asegurado</ion-label>
+        <ion-input formControlName="montoAsegurado" type="text"></ion-input>
+      </ion-item>
+      
+    </ion-list>
+  </form>
+</ion-content>

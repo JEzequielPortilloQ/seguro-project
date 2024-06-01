@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header [translucent]="true">
+  <ion-toolbar *ngIf="!isSearch">
+    <ion-title>Listado Clientes</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="clickSearch()">
+        <ion-icon slot="end" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isSearch">
+    <ion-searchbar show-cancel-button="always" show-clear-button="always" (ionClear)="clearSearch()" (ionChange)="buscarSearch($event)"></ion-searchbar>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button [routerLink]="'/cliente-edit'" expand="block">
+    Nuevo
+  </ion-button>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" class="ion-text-center"><b>Nombre</b></ion-col>
+      <ion-col size="3" class="ion-text-center"><b>Apellido</b></ion-col>
+      <ion-col size="3" class="ion-text-center"><b>Fecha de Nacimiento</b></ion-col>
+      <ion-col size="3" class="ion-text-center"><b>Acciones</b></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item *ngFor="let cliente of listaClientes">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3" class="ion-text-center ion-align-self-center">{{ cliente.nombre }}</ion-col>
+          <ion-col size="3" class="ion-text-center ion-align-self-center">{{ cliente.apellido }}</ion-col>
+          <ion-col size="3" class="ion-text-center ion-align-self-center">{{ cliente.fechaNacimiento }}</ion-col>
+          <ion-col size="3" class="custom-button-container">
+            <ion-button [routerLink]="['/cliente-edit', cliente.id]"><ion-icon name="create"></ion-icon></ion-button> 
+            <ion-button (click)="eliminarClienteConfirmacion(cliente.id)"><ion-icon name="trash"></ion-icon></ion-button> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
